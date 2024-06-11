@@ -24,8 +24,8 @@ AppDataSource.initialize()
   .then(() => {
     app.use('/users', userRoutes);
     app.use('/auth', authRoutes);
+    app.use('/events', ticketRoutes);
     app.use('/events', eventRoutes);
-    app.use('/events/:eventId/tickets', ticketRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
