@@ -14,22 +14,24 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  synchronize: false,  // Disable synchronize here
+  synchronize: true, // Set to true for development purposes
   logging: false,
   entities: [User, Event, Reservation],
   migrations: [],
   subscribers: [],
 });
 
-AppDataSource.initialize()
-  .then(async () => {
-    console.log('Data Source has been initialized!');
-    await AppDataSource.dropDatabase();  // Drop the existing database schema
-    await AppDataSource.synchronize();   // Synchronize the new schema
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization', err);
-  });
+
+
+// AppDataSource.initialize()
+//   .then(async () => {
+//     console.log('Data Source has been initialized!');
+//     await AppDataSource.dropDatabase();  // Drop the existing database schema
+//     await AppDataSource.synchronize();   // Synchronize the new schema
+//   })
+//   .catch((err) => {
+//     console.error('Error during Data Source initialization', err);
+//   });
 
 
 

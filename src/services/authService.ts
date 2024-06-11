@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../data-source';
 import { User } from '../models/User';
 
 interface AuthenticateUserDTO {
@@ -9,7 +10,11 @@ interface AuthenticateUserDTO {
 }
 
 export class AuthService {
-  private userRepository = getRepository(User);
+  private userRepository: Repository<User>;
+
+  constructor() {
+    this.userRepository = AppDataSource.getRepository(User);
+  }
 
   async authenticateUser({ email, password }: AuthenticateUserDTO) {
     const user = await this.userRepository.findOne({ where: { email } });

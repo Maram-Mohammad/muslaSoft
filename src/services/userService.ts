@@ -1,4 +1,5 @@
-import { getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../data-source';
 import { User } from '../models/User';
 
 interface CreateUserDTO {
@@ -8,7 +9,11 @@ interface CreateUserDTO {
 }
 
 export class UserService {
-  private userRepository = getRepository(User);
+  private userRepository: Repository<User>;
+
+  constructor() {
+    this.userRepository = AppDataSource.getRepository(User);
+  }
 
   async createUser(userData: CreateUserDTO) {
     const user = this.userRepository.create(userData);

@@ -1,4 +1,5 @@
-import { getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../data-source';
 import { Event } from '../models/Event';
 
 interface CreateEventDTO {
@@ -17,7 +18,11 @@ interface GetEventsQuery {
 }
 
 export class EventService {
-  private eventRepository = getRepository(Event);
+  private eventRepository: Repository<Event>;
+
+  constructor() {
+    this.eventRepository = AppDataSource.getRepository(Event);
+  }
 
   async createEvent(eventData: CreateEventDTO) {
     const event = this.eventRepository.create(eventData);
@@ -28,7 +33,6 @@ export class EventService {
   async getEvents(query: GetEventsQuery) {
     const { name, startDate, endDate, category } = query;
 
-    // Build the query
     const where: any = {};
     if (name) {
       where.name = name;

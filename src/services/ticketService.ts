@@ -1,4 +1,5 @@
-import { getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../data-source';
 import { Event } from '../models/Event';
 import { Reservation } from '../models/Reservation';
 import { User } from '../models/User';
@@ -10,9 +11,15 @@ interface ReserveTicketsDTO {
 }
 
 export class TicketService {
-  private reservationRepository = getRepository(Reservation);
-  private userRepository = getRepository(User);
-  private eventRepository = getRepository(Event);
+  private reservationRepository: Repository<Reservation>;
+  private userRepository: Repository<User>;
+  private eventRepository: Repository<Event>;
+
+  constructor() {
+    this.reservationRepository = AppDataSource.getRepository(Reservation);
+    this.userRepository = AppDataSource.getRepository(User);
+    this.eventRepository = AppDataSource.getRepository(Event);
+  }
 
   async reserveTickets(eventId: number, attendeesCount: number, userId: number) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
