@@ -1,54 +1,38 @@
-import { AppDataSource } from '../data-source';
+import { getRepository } from 'typeorm';
+import { Event } from '../models/Event';
 import { Reservation } from '../models/Reservation';
 import { User } from '../models/User';
-import { Event } from '../models/Event';
 
-export class ReservationService {
-  private reservationRepository = AppDataSource.getRepository(Reservation);
+interface ReserveTicketsDTO {
+  eventId: number;
+  attendeesCount: number;
+  userId: number;
+}
 
-  async reserveTicket(userId: number, eventId: number) {
-    const user = await AppDataSource.getRepository(User).findOneBy({ id: userId });
-    const event = await AppDataSource.getRepository(Event).findOneBy({ id: eventId });
+export class TicketService {
+  private reservationRepository = getRepository(Reservation);
+  private userRepository = getRepository(User);
+  private eventRepository = getRepository(Event);
 
-    if (!user || !event) {
-      throw new Error('User or Event not found');
+  async reserveTickets(eventId: number, attendeesCount: number, userId: number) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    const event = await this.eventRepository.findOne({ where: { id: eventId } });
+
+    if (!user) {
+      throw new Error('User not found');
     }
 
-    if (event.availableAttendeesCount <= 0) {
-      throw new Error('No tickets available');
+    if (!event) {
+      throw new Error('Event not found');
     }
 
-    const reservation = new Reservation();
-    reservation.user = user;
-    reservation.event = event;
-
-    event.availableAttendeesCount -= 1;
-    await AppDataSource.getRepository(Event).save(event);
-
-    return this.reservationRepository.save(reservation);
-  }
-
-  async findReservationsByUser(userId: number) {
-    return this.reservationRepository.find({
-      where: { user: { id: userId } },
-      relations: ['event'],
-    });
-  }
-
-  async cancelReservation(reservationId: number) {
-    const reservation = await this.reservationRepository.findOne({
-      where: { id: reservationId },
-      relations: ['event'],
+    const reservation = this.reservationRepository.create({
+      attendeesCount,
+      user,
+      event,
     });
 
-    if (!reservation) {
-      throw new Error('Reservation not found');
-    }
-
-    const event = reservation.event;
-    event.availableAttendeesCount += 1;
-    await AppDataSource.getRepository(Event).save(event);
-
-    return this.reservationRepository.remove(reservation);
+    await this.reservationRepository.save(reservation);
+    return reservation;
   }
 }

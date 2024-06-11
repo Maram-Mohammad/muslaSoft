@@ -6,8 +6,11 @@ import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import { AppDataSource } from './data-source';
 import eventRoutes from './routes/eventRoutes';
-import reservationRoutes from './routes/ticketRoutes';
 import userRoutes from './routes/userRoutes';
+
+import authRoutes from './routes/authRoutes';
+import ticketRoutes from './routes/ticketRoutes';
+import YAML from 'yamljs';
 
 dotenv.config();
 
@@ -16,14 +19,17 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
-app.use('/api/reservations', reservationRoutes);
+app.use('/api/tickets', ticketRoutes);
+
 
 // Load Swagger specification
-const swaggerDocument = fs.readFileSync(path.resolve(__dirname, 'swagger.yaml'), 'utf8');
+const swaggerDocument = YAML.load(path.join(__dirname, '..', 'event-booking-swagger.yml'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(swaggerDocument)));
 
 AppDataSource.initialize()
   .then(() => {

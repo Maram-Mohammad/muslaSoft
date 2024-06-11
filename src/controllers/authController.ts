@@ -8,7 +8,7 @@ export const authenticateUser = async (req: Request, res: Response) => {
   try {
     const token = await authService.authenticateUser({ email, password });
     res.status(200).json({ token });
-  } catch (error) {
+  } catch (error: any) {
     res.status(401).json({ message: error.message });
   }
 };

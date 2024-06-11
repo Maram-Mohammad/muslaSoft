@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from './User';
 import { Event } from './Event';
 
@@ -8,10 +8,13 @@ export class Reservation {
   id!: number;
 
   @ManyToOne(() => User)
-  @JoinColumn()
+  @JoinColumn({ name: 'userId' })
   user!: User;
 
   @ManyToOne(() => Event)
-  @JoinColumn()
+  @JoinColumn({ name: 'eventId' })
   event!: Event;
+
+  @Column()
+  attendeesCount!: number;
 }
