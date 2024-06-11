@@ -12,6 +12,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   adminer:
     image: adminer
@@ -20,21 +22,29 @@ services:
       - 8082:8080
     depends_on:
       - postgres
+    networks:
+      - app-network
 
   # app:
   #   build: .
   #   container_name: event-booking-app
   #   environment:
-  #     DATABASE_HOST: postgres
-  #     DATABASE_PORT: 5432
-  #     DATABASE_USERNAME: yourusername
-  #     DATABASE_PASSWORD: yourpassword
-  #     DATABASE_NAME: eventbooking
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_USERNAME: yourusername
+  #     DB_PASSWORD: yourpassword
+  #     DB_NAME: eventbooking
   #     JWT_SECRET: your_jwt_secret
   #   ports:
   #     - "3000:3000"
   #   depends_on:
   #     - postgres
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres_data:
