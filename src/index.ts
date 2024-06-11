@@ -22,10 +22,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 AppDataSource.initialize()
   .then(() => {
-    app.use('/api/users', userRoutes);
-    app.use('/api/auth', authRoutes);
-    app.use('/api/events', eventRoutes);
-    app.use('/api/tickets', ticketRoutes);
+    app.use('/users', userRoutes);
+    app.use('/auth', authRoutes);
+    app.use('/events', eventRoutes);
+    app.use('/events/:eventId/tickets', ticketRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../data-source';
 import { User } from '../models/User';
@@ -16,7 +17,11 @@ export class UserService {
   }
 
   async createUser(userData: CreateUserDTO) {
-    const user = this.userRepository.create(userData);
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    const user = this.userRepository.create({
+      ...userData,
+      password: hashedPassword,
+    });
     await this.userRepository.save(user);
     return user;
   }

@@ -34,6 +34,6 @@ const router = Router();
  *     security:
  *       - Bearer: []
  */
-router.post('/events/:eventId/tickets', authenticateToken, reserveTickets);
+router.post('/', authenticateToken, reserveTickets);
 
 export default router;
