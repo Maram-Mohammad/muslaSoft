@@ -1,14 +1,26 @@
-// tests/authController.test.ts
 import request from 'supertest';
-import app from '../src/index'; // Import your Express app
+import { app } from '../src/app';
 
-describe('Auth Controller', () => {
-  it('should authenticate a user', async () => {
-    const response = await request(app)
+describe('User Authentication', () => {
+  it('should authenticate a user with valid credentials', async () => {
+    const res = await request(app)
       .post('/auth')
-      .send({ email: 'test@example.com', password: 'password123' });
+      .send({
+        email: 'john@example.com',
+        password: 'password123',
+      });
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('token');
+  });
 
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('token');
+  it('should not authenticate a user with invalid credentials', async () => {
+    const res = await request(app)
+      .post('/auth')
+      .send({
+        email: 'john@example.com',
+        password: 'wrongpassword',
+      });
+    expect(res.statusCode).toEqual(401);
+    expect(res.body).toHaveProperty('message');
   });
 });
