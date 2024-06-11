@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: Event Booking API
   description: This API allows customers to create, find and reserve tickets for events, view and manage their reservations, and be notified before the event kickoff.
-host: localhost:8080
+host: localhost:3000
 schemes:
   - http
 securityDefinitions:
