@@ -7,6 +7,7 @@ import YAML from 'yamljs';
 import { AppDataSource } from './data-source';
 import authRoutes from './routes/authRoutes';
 import eventRoutes from './routes/eventRoutes';
+import reservationRoutes from './routes/reservationRoutes';
 import ticketRoutes from './routes/ticketRoutes';
 import userRoutes from './routes/userRoutes';
 
@@ -26,6 +27,8 @@ AppDataSource.initialize()
     app.use('/auth', authRoutes);
     app.use('/events', ticketRoutes);
     app.use('/events', eventRoutes);
+    app.use('/reservations', reservationRoutes);
+
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

@@ -140,6 +140,45 @@ paths:
         - tickets
       security:
         - Bearer: []
+  /reservations:
+    get:
+      summary: View your booked events.
+      description: This endpoint allows customers to view their booked events.
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReservationResponseDTO'
+        '401':
+          description: Unauthorized
+      tags:
+        - reservations
+      security:
+        - Bearer: []
+  /reservations/{reservationId}:
+    delete:
+      summary: Cancel a reservation.
+      description: This endpoint allows customers to cancel their reservations.
+      parameters:
+        - in: path
+          name: reservationId
+          description: The ID of the reservation to cancel.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      tags:
+        - reservations
+      security:
+        - Bearer: []
 definitions:
   User:
     type: object
@@ -218,6 +257,18 @@ definitions:
       attendeesCount:
         type: integer
         minimum: 1
+  ReservationResponseDTO:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      event:
+        $ref: '#/definitions/EventResponseDTO'
+      attendeesCount:
+        type: integer
+      user:
+        $ref: '#/definitions/User'
   Category:
     type: string
     enum:
