@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Event } from './models/Event';
+import { NotificationLog } from './models/NotificationLog';
 import { Reservation } from './models/Reservation';
 import { User } from './models/User';
 
@@ -16,7 +17,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_NAME,
   synchronize: true, // Set to true for development purposes
   logging: false,
-  entities: [User, Event, Reservation],
+  entities: [User, Event, Reservation, NotificationLog],
   migrations: [],
   subscribers: [],
 });

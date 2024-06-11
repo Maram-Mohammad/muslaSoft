@@ -10,6 +10,7 @@ import eventRoutes from './routes/eventRoutes';
 import reservationRoutes from './routes/reservationRoutes';
 import ticketRoutes from './routes/ticketRoutes';
 import userRoutes from './routes/userRoutes';
+import { NotificationService } from './services/notificationService';
 
 dotenv.config();
 
@@ -33,6 +34,10 @@ AppDataSource.initialize()
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
+
+     // Initialize and start the notification service
+     const notificationService = new NotificationService();
+     notificationService.scheduleNotifications();
   })
   .catch((error) => {
     console.log('Error during Data Source initialization', error);

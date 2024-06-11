@@ -1,20 +1,20 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { User } from './User';
 import { Event } from './Event';
+import { User } from './User';
 
 @Entity()
 export class Reservation {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'userId' })
-  user!: User;
+  @Column()
+  attendeesCount!: number;
 
-  @ManyToOne(() => Event)
+  @ManyToOne(() => Event, (event) => event.reservations)
   @JoinColumn({ name: 'eventId' })
   event!: Event;
 
-  @Column()
-  attendeesCount!: number;
+  @ManyToOne(() => User, (user) => user.reservations)
+  @JoinColumn({ name: 'userId' })
+  user!: User;
 }
