@@ -9,6 +9,10 @@ export const createUser = async (req: Request, res: Response) => {
     const user = await userService.createUser({ name, email, password });
     res.status(201).json(user);
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    if (error.message === 'Email already in use') {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
   }
 };

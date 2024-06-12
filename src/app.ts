@@ -20,8 +20,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
+app.use('/events', ticketRoutes);
 app.use('/events', eventRoutes);
-app.use('/events/:eventId/tickets', ticketRoutes);
 app.use('/reservations', reservationRoutes);
 
 export { app };

@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { createUser } from '../controllers/userController';
+import { CreateUserDTO } from '../dto/userTDO';
+import { validationMiddleware } from '../middleware/validationMiddleware';
 
 const router = Router();
 
@@ -23,6 +25,6 @@ const router = Router();
  *     tags:
  *       - users
  */
-router.post('/', createUser);
+router.post('/', validationMiddleware(CreateUserDTO), createUser);
 
 export default router;
