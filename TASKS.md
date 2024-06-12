@@ -1,9 +1,11 @@
 # Tasks Checklist
 
+Models: 
+---
 - [ ] Implement User Model With Validation
    - **Description:** Implement User Model With Validation on 
    [] name max length is 100 char 
-   [] email is unique 
+   [] Email is unique 
    [] password hashed and at least 8 characters
 
 - [ ] Implement Event Model 
@@ -12,21 +14,22 @@
    [] Date Formate 
    [] max attendees count 1000
    [] description length max 500 char 
-   [] category is one of [concert m conference , game ]
+   [] category is one of [concert m conference, game ]
 
 - [ ] Implement Reservation Ticket 
    - **Description:** IReservation ticket 
    [] Ticket id - Event ID - Attendese Count 
 
 - [ ] Implement Audit Log Model     
-   - **Description:** Audit Log Model for Notification History has sent to user 
+   - **Description:** Audit Log Model for Notification History has been sent to the user 
 
 
 - [ ] Implement Schdualed Notifation for Event 
    - **Description:** Scheduled Notification From User for Event
 
 ---------------------------
-
+API: 
+----
 - [ ] Implement User Creation Endpoint
    - **Description:** Implement the endpoint `/users` to allow users to create a new account.
 
@@ -55,33 +58,48 @@
     - **Description:** Implement an endpoint to retrieve the history of notifications sent to users.
 
 -----------------------
+Tasks:
+---
 
-- [ ] Set Up Periodic Task for Sending Notifications
+- [ ] Set Up Periodic Tasks for Sending Notifications
     - **Description:** Implement a periodic task scheduler (e.g., using cron jobs) to send notifications to users before events start.
 
 --------------------------
+Tests: 
+---
 
 - [ ] Add Unit Tests for Functionality
     - **Description:** Write unit tests to ensure that notifications are sent correctly and at the appropriate time.
-
+    - [ ] User
+    - [ ] Auth
+    - [ ] Event
+    - [ ] Reservation
+    - [ ] Notification 
 
 - [ ] Write Integration Tests for the Service
     - **Description:** Write integration tests to verify that the  service functions correctly within the application.
+    - [ ] User
+    - [ ] Auth
+    - [ ] Event
+    - [ ] Reservation
+    - [ ] Notification 
 
 
 -------------------------------------
 
 - [ ] Pre-Loaded data in Database
 
-- [ ] Video Explaination 
+- [ ] Video Explanation 
 
-- [ ] how to test System 
+- [ ] how to test System
+
+- [ ] Build a Docker file  & Docker Compose File to run the App in the container With Database 
 
 - [ ] Installation Instructions
-   - **Description:** Provide detailed instructions on how to install the application and its dependencies.
+   - **Description:** Provide detailed instructions on installing the application and its dependencies.
 
 - [ ] Configuration Guide
-   - **Description:** Explain any configuration options or environment variables that need to be set up.
+   - **Description:** Explain any configuration options or environment variables that must be set up.
 
 - [ ] Build Instructions
    - **Description:** Detail the steps required to build the application from source code.
