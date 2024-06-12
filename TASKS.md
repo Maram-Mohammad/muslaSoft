@@ -27,7 +27,7 @@ Models:
 - [ ] Implement Schdualed Notifation for Event 
    - **Description:** Scheduled Notification From User for Event
 
----------------------------
+
 API: 
 ----
 - [ ] Implement User Creation Endpoint
@@ -57,14 +57,16 @@ API:
 - [ ] Implement Endpoint for Notification History
     - **Description:** Implement an endpoint to retrieve the history of notifications sent to users.
 
------------------------
+
+
 Tasks:
 ---
 
 - [ ] Set Up Periodic Tasks for Sending Notifications
     - **Description:** Implement a periodic task scheduler (e.g., using cron jobs) to send notifications to users before events start.
 
---------------------------
+
+
 Tests: 
 ---
 
@@ -85,15 +87,14 @@ Tests:
     - [ ] Notification 
 
 
--------------------------------------
+
+
 Others: 
 ---
 
 - [ ] Pre-Loaded data in Database
 
-- [ ] Video Explanation 
-
-- [ ] how to test System
+- [ ] Video Explanation for Running and Architecture 
 
 - [ ] Build a Docker file  & Docker Compose File to run the App in the container With Database 
 
