@@ -94,6 +94,8 @@ Others:
 
 - [ ] Pre-Loaded data in Database
 
+- [ ] Assumptions If Any
+
 - [ ] Video Explanation for Running and Architecture 
 
 - [ ] Build a Docker file  & Docker Compose File to run the App in the container With Database 
