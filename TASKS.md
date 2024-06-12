@@ -3,22 +3,22 @@
 Models: 
 ---
 - [ ] Implement User Model With Validation
-   - **Description:** Implement User Model With Validation on 
-   [] name max length is 100 char 
-   [] Email is unique 
-   [] password hashed and at least 8 characters
+   - **Description:** Implement User Model With Validation on
+   - [ ] name max length is 100 char
+   - [ ] Email is unique
+   - [ ] password hashed and at least 8 characters
 
 - [ ] Implement Event Model 
-   - **Description:** Implement Event Model With Validation on 
-   [] name max length is 100 character 
-   [] Date Formate 
-   [] max attendees count 1000
-   [] description length max 500 char 
-   [] category is one of [concert m conference, game ]
+   - **Description:** Implement Event Model With Validation on
+   - [ ] name max length is 100 character
+   - [ ] Date Formate
+   - [ ] max attendees count 1000
+   - [ ] description length max 500 char
+   - [ ] category is one of [concert , conference, game ]
 
 - [ ] Implement Reservation Ticket 
-   - **Description:** IReservation ticket 
-   [] Ticket id - Event ID - Attendese Count 
+   - **Description:** IReservation ticket
+   - [ ] Ticket id - Event ID - Attendese Count 
 
 - [ ] Implement Audit Log Model     
    - **Description:** Audit Log Model for Notification History has been sent to the user 
