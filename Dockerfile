@@ -22,7 +22,7 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 COPY .env /usr/src/app/.env
 
 # Build the TypeScript code
-RUN npm run build
+RUN npm run compile
 
 # Expose the port the app runs on
 EXPOSE 3000

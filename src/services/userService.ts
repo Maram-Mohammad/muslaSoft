@@ -3,7 +3,6 @@ import { validateOrReject } from 'class-validator';
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../data-source';
 import { User } from '../models/User';
-import { CreateUserDTO } from '../dto/userTDO';
 
 
 export class UserService {
@@ -13,9 +12,9 @@ export class UserService {
     this.userRepository = AppDataSource.getRepository(User);
   }
 
-  async createUser(userData: CreateUserDTO) {
+  async createUser(userData: User) {
     
-     const userDto = new CreateUserDTO();
+     const userDto = new User();
      userDto.name = userData.name;
      userDto.email = userData.email;
      userDto.password = userData.password;

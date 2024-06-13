@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import authRoutes from './routes/authRoutes';
 import eventRoutes from './routes/eventRoutes';
+import notificationRoutes from './routes/notificationRoutes';
 import reservationRoutes from './routes/reservationRoutes';
 import ticketRoutes from './routes/ticketRoutes';
 import userRoutes from './routes/userRoutes';
@@ -23,5 +24,6 @@ app.use('/auth', authRoutes);
 app.use('/events', ticketRoutes);
 app.use('/events', eventRoutes);
 app.use('/reservations', reservationRoutes);
+app.use('/notifications', notificationRoutes);
 
 export { app };

@@ -5,6 +5,7 @@ import { Event } from './models/Event';
 import { NotificationLog } from './models/NotificationLog';
 import { Reservation } from './models/Reservation';
 import { User } from './models/User';
+import { NotificationSchdule } from './models/schduledNotifications';
 
 // dotenv.config();
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [User, Event, Reservation, NotificationLog],
+  entities: [User, Event, Reservation, NotificationLog, NotificationSchdule],
   migrations: [],
   subscribers: [],
 });

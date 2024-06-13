@@ -179,6 +179,53 @@ paths:
         - reservations
       security:
         - Bearer: []
+  /notifications:
+    post:
+      summary: Schedule a notification.
+      description: This endpoint allows scheduling a notification for an event.
+      parameters:
+        - in: body
+          name: notificationSchedule
+          description: The notification schedule details.
+          schema:
+            $ref: '#/definitions/NotificationScheduleRequestDTO'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      tags:
+        - notifications
+      security:
+        - Bearer: []
+  /notifications/{eventId}/logs:
+    get:
+      summary: Get notification logs for an event.
+      description: This endpoint retrieves the logs of notifications sent for a specific event.
+      parameters:
+        - in: path
+          name: eventId
+          description: The ID of the event to get logs for.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NotificationLogResponseDTO'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      tags:
+        - notifications
+      security:
+        - Bearer: []
 definitions:
   User:
     type: object
@@ -275,3 +322,39 @@ definitions:
       - Concert 
       - Conference 
       - Game
+  NotificationScheduleRequestDTO:
+    type: object
+    required:
+      - eventId
+      - message
+      - date
+      - status
+    properties:
+      eventId:
+        type: integer
+      message:
+        type: string
+        maxLength: 500
+      date:
+        type: string
+        format: date-time
+      status:
+        type: string
+        enum:
+          - scheduled
+          - sent
+          - failed
+  NotificationLogResponseDTO:
+    type: object
+    properties:
+      id:
+        type: integer
+      userId:
+        type: integer
+      eventId:
+        type: integer
+      message:
+        type: string
+      createdAt:
+        type: string
+        format: date-time

@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { createEvent, getEvents } from '../controllers/eventController';
 import { authenticateToken } from '../middleware/authMiddleware';
+import { validationMiddleware } from '../middleware/validationMiddleware';
+import { Event } from '../models/Event';
 
 const router = Router();
 
@@ -71,7 +73,7 @@ const router = Router();
  *     tags:
  *       - events
  */
-router.post('/', authenticateToken, createEvent);
+router.post('/', [authenticateToken, validationMiddleware(Event)], createEvent);
 router.get('/', getEvents);
 
 export default router;

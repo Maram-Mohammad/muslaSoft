@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class NotificationLog {
@@ -9,6 +9,7 @@ export class NotificationLog {
   userId!: number;
 
   @Column()
+  @JoinColumn({ name: 'eventId' })
   eventId!: number;
 
   @Column()
