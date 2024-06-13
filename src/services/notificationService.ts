@@ -83,6 +83,8 @@ export class NotificationService {
   scheduleNotifications() {
     cron.schedule('*/1 * * * *', async () => {
       await this.checkAndSendScheduledNotifications();
+      await this.sendNotifications();
+
     });
   }
 
@@ -92,6 +94,33 @@ export class NotificationService {
       relations: ['event'],
     });
     return scheduledNotifications;
+  }
+
+  
+
+  private async sendNotifications() {
+    const now = new Date();
+    now.setSeconds(0, 0);  
+  
+    const nextHour = new Date(now.getTime() + 1 * 60 *60 * 1000);
+
+    console.log(nextHour);
+    const events = await this.eventRepository.find({
+      where: {
+        date: nextHour,
+      },
+      relations: ['reservations', 'reservations.user'],
+    });
+
+    for (const event of events) {
+      for (const reservation of event.reservations) {
+        const user = reservation.user;
+        if (user) {
+          console.log(`Notifying user ${user.email} about event ${event.name}`);
+          await this.logNotification(user.id, event.id, `Notified user ${user.email} about event ${event.name}`);
+        }
+      }
+    }
   }
   
 }

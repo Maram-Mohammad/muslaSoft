@@ -18,7 +18,6 @@ export class Event {
   date!: Date;
 
   @Column()
-  @IsInt({ message: 'Available attendees count must be an integer' })
   @Min(1, { message: 'Available attendees count must be at least 1' })
   @Max(1000, { message: 'Available attendees count cannot exceed 1000' })
   availableAttendeesCount!: number;

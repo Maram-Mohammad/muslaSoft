@@ -6,7 +6,6 @@ const notificationService = new NotificationService();
 export const scheduleNotification = async (req: Request, res: Response) => {
   const { eventId, message, date } = req.body;
   try {
-    console.log(eventId, message, date);
     await notificationService.createNotificationSchedule(eventId, message, new Date(date));
     res.status(200).json({ success: true, message: 'Notification sent successfully' });
   } catch (error: any) {

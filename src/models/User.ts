@@ -1,7 +1,7 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Reservation } from './Reservation';
 import { NotificationLog } from './NotificationLog';
+import { Reservation } from './Reservation';
 
 @Entity()
 export class User {
@@ -10,6 +10,7 @@ export class User {
 
   @Column({ length: 100 })
   @IsNotEmpty()
+  @MaxLength(100, { message: 'Name must be at most 100 characters long' })
   name!: string;
 
   @Column({ unique: true }) 
