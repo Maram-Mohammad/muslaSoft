@@ -38,7 +38,7 @@ export class NotificationService {
     return logs;
   }
 
-  private async checkAndSendScheduledNotifications() {
+  async checkAndSendScheduledNotifications() {
     const now = new Date();
     now.setSeconds(0,0);
     console.log("NOW CHECK : ", now );
