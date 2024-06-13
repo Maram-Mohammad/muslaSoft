@@ -1,4 +1,6 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Event } from './Event';
+import { User } from './User';
 
 @Entity()
 export class NotificationLog {
@@ -9,7 +11,6 @@ export class NotificationLog {
   userId!: number;
 
   @Column()
-  @JoinColumn({ name: 'eventId' })
   eventId!: number;
 
   @Column()
@@ -17,4 +18,12 @@ export class NotificationLog {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt!: Date;
+
+
+  @ManyToOne(() => User, (user) => user.notificationLogs)
+  user!: User;
+
+  @ManyToOne(() => Event, (event) => event.logs)
+  event!: Event;
+
 }

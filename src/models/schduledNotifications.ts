@@ -1,14 +1,13 @@
 import { IsIn, MaxLength } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Event } from './Event';
 @Entity()
-export class NotificationSchdule {
+export class NotificationSchedule {
   
   @PrimaryGeneratedColumn()
   id!: number;
 
-  // @ManyToOne(() => Event, (event) => event.)
-  // @JoinColumn({ name: 'eventId' })
+  @Column()
   eventId!: number;
 
   @Column()
@@ -21,4 +20,6 @@ export class NotificationSchdule {
   @Column()
   @IsIn(['scheduled', 'sent', 'failed'], { message: 'Invalid status' })
   status!: string;
-}
+  
+  @ManyToOne(() => Event, (event) => event.notifications)
+  event!: Event;}

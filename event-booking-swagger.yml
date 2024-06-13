@@ -226,6 +226,32 @@ paths:
         - notifications
       security:
         - Bearer: []
+  /notifications/{eventId}/scheduled:
+    get:
+      summary: Get scheduled notifications for an event.
+      description: This endpoint retrieves the scheduled notifications for a specific event.
+      parameters:
+        - in: path
+          name: eventId
+          description: The ID of the event to get scheduled notifications for.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NotificationScheduleResponseDTO'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      tags:
+        - notifications
+      security:
+        - Bearer: []
 definitions:
   User:
     type: object
@@ -278,7 +304,7 @@ definitions:
         type: string
         maxLength: 500
       category:
-          $ref: '#/definitions/Category'
+        $ref: '#/definitions/Category'
   EventResponseDTO:
     type: object
     properties:
@@ -295,7 +321,7 @@ definitions:
       description:
         type: string
       category:
-          $ref: '#/definitions/Category'
+        $ref: '#/definitions/Category'
   TicketRequest:
     type: object
     required:
@@ -344,6 +370,20 @@ definitions:
           - scheduled
           - sent
           - failed
+  NotificationScheduleResponseDTO:
+    type: object
+    properties:
+      id:
+        type: integer
+      eventId:
+        type: integer
+      message:
+        type: string
+      date:
+        type: string
+        format: date-time
+      status:
+        type: string
   NotificationLogResponseDTO:
     type: object
     properties:

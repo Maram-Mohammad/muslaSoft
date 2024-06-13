@@ -1,6 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { IsNotEmpty, IsDate, IsInt, Min, Max, MaxLength, IsIn } from 'class-validator';
+import { IsIn, IsInt, IsNotEmpty, Max, MaxLength, Min } from 'class-validator';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { NotificationLog } from './NotificationLog';
 import { Reservation } from './Reservation';
+import { NotificationSchedule } from './schduledNotifications';
 
 @Entity()
 export class Event {
@@ -13,7 +15,6 @@ export class Event {
   name!: string;
 
   @Column()
-  // @IsDate({ message: 'Invalid date format' })
   date!: Date;
 
   @Column()
@@ -33,5 +34,11 @@ export class Event {
 
   @OneToMany(() => Reservation, (reservation) => reservation.event)
   reservations!: Reservation[];
+
+  @OneToMany(() => NotificationSchedule, (schedule) => schedule.event)
+  notifications!: NotificationSchedule[];
+
+  @OneToMany(() => NotificationLog, (log) => log.event)
+  logs!: NotificationLog[];
 
 }

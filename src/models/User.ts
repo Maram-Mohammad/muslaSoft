@@ -1,6 +1,7 @@
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Reservation } from './Reservation';
+import { NotificationLog } from './NotificationLog';
 
 @Entity()
 export class User {
@@ -21,4 +22,7 @@ export class User {
 
   @OneToMany(() => Reservation, (reservation) => reservation.user)
   reservations!: Reservation[];
+
+  @OneToMany(() => NotificationLog, (log) => log.user)
+  notificationLogs!: NotificationLog[];
 }
