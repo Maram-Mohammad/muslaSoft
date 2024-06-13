@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import 'reflect-metadata';
 import { AppDataSource } from '../data-source';
 dotenv.config({ path: path.resolve(__dirname, '../../.env.test') });
 

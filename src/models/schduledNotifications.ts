@@ -1,13 +1,14 @@
 import { IsIn, MaxLength } from 'class-validator';
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class NotificationSchdule {
+  
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
-  @JoinColumn({ name: 'eventId' })
+  // @ManyToOne(() => Event, (event) => event.)
+  // @JoinColumn({ name: 'eventId' })
   eventId!: number;
 
   @Column()

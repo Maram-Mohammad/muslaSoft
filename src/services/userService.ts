@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { AppDataSource } from '../data-source';
 import { User } from '../models/User';
 
-
 export class UserService {
   private userRepository: Repository<User>;
 
@@ -13,16 +12,15 @@ export class UserService {
   }
 
   async createUser(userData: User) {
-    
-     const userDto = new User();
-     userDto.name = userData.name;
-     userDto.email = userData.email;
-     userDto.password = userData.password;
- 
-     await validateOrReject(userDto).catch(errors => {
-       throw new Error('Validation failed!');
-     });
-     
+    const userDto = new User();
+    userDto.name = userData.name;
+    userDto.email = userData.email;
+    userDto.password = userData.password;
+
+    await validateOrReject(userDto).catch(errors => {
+      throw new Error('Validation failed!');
+    });
+
     const existingUser = await this.userRepository.findOne({ where: { email: userData.email } });
     if (existingUser) {
       throw new Error('Email already in use');

@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 
-describe.skip('View and Cancel Reservations', () => {
+describe('View and Cancel Reservations', () => {
   let token: string;
 
 

@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { app } from './app';
 import { AppDataSource } from './data-source';
 import { NotificationService } from './services/notificationService';

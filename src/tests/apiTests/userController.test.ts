@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 
-describe.skip('User Registration', () => {
+describe('User Registration', () => {
 
   it('should create a new user', async () => {
     const res = await request(app)

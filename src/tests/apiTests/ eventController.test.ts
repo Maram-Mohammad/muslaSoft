@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 
-describe.skip('Event Creation', () => {
+describe('Event Creation', () => {
   let token: string;
 
   beforeAll(async () => {
