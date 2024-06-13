@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+.dockerigonore
+**/.dockerigonore
+**/Dockerfile
+dist
+.env.*
+.env
+.git
+**/swagger-codegen-cli.jar
+.npm
+
+.eslint*

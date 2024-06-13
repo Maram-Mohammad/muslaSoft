@@ -25,22 +25,22 @@ services:
     networks:
       - app-network
 
-  # app:
-  #   build: .
-  #   container_name: event-booking-app
-  #   environment:
-  #     DB_HOST: postgres
-  #     DB_PORT: 5432
-  #     DB_USERNAME: yourusername
-  #     DB_PASSWORD: yourpassword
-  #     DB_NAME: eventbooking
-  #     JWT_SECRET: your_jwt_secret
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - app-network
+  app:
+    build: .
+    container_name: event-booking
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: yourusername
+      DB_PASSWORD: yourpassword
+      DB_NAME: eventbooking
+      JWT_SECRET: your_jwt_secret
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
 
 networks:
   app-network:
