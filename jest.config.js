@@ -8,11 +8,11 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      tsconfig: 'tsconfig.json',
+    }],
+  },
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json',
-    },
-  }
 };
