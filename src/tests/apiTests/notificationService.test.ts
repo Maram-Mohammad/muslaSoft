@@ -1,4 +1,4 @@
-import { NotificationService } from '../services/notificationService';
+import { NotificationService } from '../../services/notificationService';
 
 
 describe.skip('Notification Service', () => {
