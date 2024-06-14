@@ -41,11 +41,11 @@ Swagger File : http://localhost:3000/api-docs/#/
 ---
 #### Technoclogies : 
 
-Express.js: Web framework for building the API.
-TypeORM: ORM for database interactions.
-PostgreSQL: Database for storing application data.
-Jest: Testing framework for unit tests.
-Docker: Containerization platform for running the application and database.
+1. Express.js: Web framework for building the API.
+2. TypeORM: ORM for database interactions.
+3. PostgreSQL: Database for storing application data.
+4. Jest: Testing framework for unit tests.
+5. Docker: Containerization platform for running the application and database.
 
 
 ## Run Testing 
