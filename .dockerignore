@@ -4,8 +4,8 @@ node_modules
 **/.dockerigonore
 **/Dockerfile
 dist
-.env.*
-.env
+# .env.*
+# .env
 .git
 **/swagger-codegen-cli.jar
 .npm
