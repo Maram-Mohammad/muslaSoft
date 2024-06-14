@@ -1,4 +1,3 @@
-// routes/notificationRoutes.ts
 import express from 'express';
 import { getNotificationLogs, getScheduledNotifications, scheduleNotification } from '../controllers/notificationController';
 import { authenticateToken } from '../middleware/authMiddleware';
@@ -9,7 +8,7 @@ const router = express.Router();
 
 router.post('/', [authenticateToken, validationMiddleware(NotificationSchedule)], scheduleNotification);
 router.get('/:eventId/logs', [authenticateToken], getNotificationLogs);
-router.get('/:eventId/scheduled', getScheduledNotifications); // New route
+router.get('/:eventId/scheduled', getScheduledNotifications); 
 
 export default router;
 

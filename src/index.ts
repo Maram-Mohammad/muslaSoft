@@ -15,10 +15,9 @@ AppDataSource.initialize()
       console.log(`Server running on port ${PORT}`);
     });
     
-    // if (process.env.PRELOAD_DATA === 'true') {
       console.log('Preloading data into the database...');
       await preloadData();
-    // }
+    
   
   })
   .catch((error) => {

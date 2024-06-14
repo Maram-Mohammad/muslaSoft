@@ -6,14 +6,12 @@ import { User } from '../models/User';
 
 const preloadData = async () => {
 
-    console.log("HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     try {
 
         const userRepository = AppDataSource.getRepository(User);
         const eventRepository = AppDataSource.getRepository(Event);
         const notificationScheduleRepository = AppDataSource.getRepository(NotificationSchedule);
 
-        // Preload Users
         const users = [
             {
                 name: 'Maryam',
@@ -32,7 +30,6 @@ const preloadData = async () => {
             await userRepository.save(user);
         }
 
-        // Preload Events
         const events = [
             {
                 name: 'Concert A',
@@ -55,7 +52,6 @@ const preloadData = async () => {
             await eventRepository.save(event);
         }
 
-        // Preload Notification Schedules
         const notificationSchedules = [
             {
                 eventId: 1,
